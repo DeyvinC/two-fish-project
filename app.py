@@ -13,9 +13,11 @@ db.init_app(app)
 db.create_all()
 
 class Todo(db.Model):
-    __tablename__ = "todo"
+    __table_name__ = "todo"
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
+    # incompleted = db.Column(db.Integer, default=0)
+    completed = db.Column(db.Boolean, default=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
@@ -36,7 +38,9 @@ def index():
 
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
-        return render_template('index.html', tasks=tasks)
+        # incomplete = Todo.query.filter_by(complete=False).all()
+        complete = Todo.query.filter_by(completed=True).all
+        return render_template('index.html', tasks=tasks, complete=complete)
 
 @app.route('/delete/<int:id>')
 def delete(id):
@@ -66,6 +70,27 @@ def update(id):
     else:
         return render_template('update.html', task=task)
 
+@app.route('/complete/<int:id>', methods=['POST'])
+def completeTask(id):
+    complete_task = Todo.query.get_or_404(id)
+    complete_task.completed = True 
+
+    try:
+        db.session.commit()
+        return redirect('/')
+    except:
+        'Unable to mark your task as complete'
+
+@app.route('/uncomplete/<int:id>', methods=['POST'])
+def uncompleteTask(id):
+    uncomplete_task = Todo.query.get_or_404(id)
+    uncomplete_task.completed = False
+
+    try:
+        db.session.commit()
+        return redirect('/')
+    except:
+        'Unable to mark your task as uncomplete'
 
 if __name__ == '__main__':
     app.run(debug=True)

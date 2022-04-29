@@ -5,34 +5,60 @@
 {% endblock %}
 
 {% block body %}
-<div class="content" >
-    <h1>Task Master</h1>
+<div class="container">
+    <div class="backgroudC">
+<div>
+ <h1>What to do?</h1>
+ </div>
+<div class="table-container">
     {% if tasks|length < 1 %}
     <h4>There are no tasks. Create a task.</h4>
     {% else %}
 
     <table>
-        <tr>
-            <th>Task</th>
-            <th>Added</th>
-            <th>Actions</th>
+        <tr class="table-headers">
+            <th class="th1">Task</th>
+            <th class="th2">Added</th>
+            <th class="th3">Actions</th>
+            <th class="th4">✅ or ❌</th>
         </tr>
-        {% for task in tasks %}
-            <tr>
-                <td>{{ task.content }}</td>
-                <td>{{ task.date_created.date() }}</td>
-                <td>
-                    <a href="/delete/{{ task.id }}">Delete</a>
+        {% for task in tasks %}   
+            <tr class="tasks">
+                <td class="task">{{ task.content }}</td>
+                <td class="added">{{ task.date_created.date() }}</td>
+                <td class="actions">
+                    <a href="/delete/{{ task.id }}"><button class="deleteBtn ">Delete</button></a>
                     <br>
-                    <a href="/update/{{ task.id }}">Update</a>
+                    <a href="/update/{{ task.id }}"><button>Update</button></a>
+                </td>
+                <td class="completed">
+                    {% if task.complete == True %}
+
+                    <form action="/uncomplete/{{task.id}}" method="POST">
+                    <input type="submit" value="Uncomplete" />
+                    </form>
+        
+                    {% else %}
+        
+                    <form action="/complete/{{task.id}}" method="POST">
+                    <input
+                        class="completeBtn"
+                        type="submit"
+                        value="Complete Task"
+                    />
+                    </form>
+        
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
     </table>
     {% endif %}
+</div>
     <form actions="/" method="POST">
         <input type="text" name="content" id="content">
         <input type="submit" value="Add Task">
     </form>
+    </div>
 </div>
 {% endblock %}
