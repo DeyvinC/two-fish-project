@@ -61,7 +61,7 @@ h1 {
 }
 
 .th1{
-    width: 320px;
+    width: 280px;
     height: auto;
     margin: 0px 0px 8px;
 }
@@ -80,14 +80,24 @@ h1 {
     height: auto;
     margin: 0px 0px 8px;
 }
+.th5{
+    width: 100px;
+    height: auto;
+    margin: 0px 0px 8px;
+}
 
 .task {
-    width: 320px;
+    width: 280px;
     height: auto;
     margin: 0px 0px 8px;
 }
 
 .added {
+    width: 100px;
+    height: auto;
+    margin: 0px 0px 8px;
+}
+.dueDate {
     width: 100px;
     height: auto;
     margin: 0px 0px 8px;
@@ -105,12 +115,9 @@ h1 {
     margin: 0px 0px 8px;
 }
 
-.deleteBtn {
-    background-color: red;
-    color: white;
-    margin-bottom: 5px;
-}
 
-.completeBtn {
-    background-color: green;
+html {
+    background-image: url("/static/backgroundjpg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }

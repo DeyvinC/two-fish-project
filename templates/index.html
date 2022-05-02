@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block head %}
 <title>Todo</title>
 {% endblock %}
@@ -7,9 +8,25 @@
 {% block body %}
 <div class="container">
     <div class="backgroudC">
+<section>
 <div>
- <h1>What to do?</h1>
- </div>
+    <h1>What To-Do?</h1>
+</div>
+<div>
+    <a href="/logout"><button class="logoutBtn">Log Out</button></a>
+</div>
+</section>
+<div>
+    <ul>
+        <li>Filter</a>
+            <ul class="dropdown">
+                <li><a href="/completed">Completed</a></li>
+                <li><a href="/notcompleted">incomplete</a></li>
+                <li><a href="/datedue">Date Due</a></li>
+            </ul>
+        </li>
+    </ul>
+  </div>
 <div class="table-container">
     {% if tasks|length < 1 %}
     <h4>There are no tasks. Create a task.</h4>
@@ -19,33 +36,36 @@
         <tr class="table-headers">
             <th class="th1">Task</th>
             <th class="th2">Added</th>
-            <th class="th3">Actions</th>
-            <th class="th4">✅ or ❌</th>
+            <th class="th3">Due Date</th>
+            <th class="th4">Actions</th>
+            <th class="th5">Status</th>
         </tr>
         {% for task in tasks %}   
             <tr class="tasks">
                 <td class="task">{{ task.content }}</td>
                 <td class="added">{{ task.date_created.date() }}</td>
+                <td class="dueDate">{{task.date_due.date()}}</td>
                 <td class="actions">
                     <a href="/delete/{{ task.id }}"><button class="deleteBtn ">Delete</button></a>
                     <br>
                     <a href="/update/{{ task.id }}"><button>Update</button></a>
                 </td>
                 <td class="completed">
-                    {% if task.complete == True %}
+                    {% if task.completed == True %}
 
-                    <form action="/uncomplete/{{task.id}}" method="POST">
-                    <input type="submit" value="Uncomplete" />
+                
+                    <form action="/incomplete/{{ task.id }}" method="POST">
+                        <input type="submit" class="uncompleteBtn" value="Uncomplete" />
                     </form>
-        
+
                     {% else %}
-        
-                    <form action="/complete/{{task.id}}" method="POST">
-                    <input
-                        class="completeBtn"
+
+                    <form action="/complete/{{ task.id }}" method="POST" >
+                        <input
                         type="submit"
+                        class="completeBtn" 
                         value="Complete Task"
-                    />
+                        />
                     </form>
         
                     {% endif %}
@@ -55,9 +75,23 @@
     </table>
     {% endif %}
 </div>
-    <form actions="/" method="POST">
-        <input type="text" name="content" id="content">
-        <input type="submit" value="Add Task">
+    <form class="calandaddBtn" actions="/" method="POST">
+        <div class="addtaskContainer">
+            <input type="text" name="content" id="content">
+            <input type="submit" class="addTaskBtn" value="Add Task">
+        </div>
+        <div>
+            <input
+              class="calender"
+              type="date"
+              id="date"
+              name="date_due"
+              value= null
+              min="2022-05-02"
+              max="2028-12-31"
+              style="margin-right: 2%"
+            />
+          </div>
     </form>
     </div>
 </div>

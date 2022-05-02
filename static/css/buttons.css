@@ -1,0 +1,51 @@
+.deleteBtn {
+    background-color: red;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.completeBtn {
+    background-color: green;
+}
+
+.uncompleteBtn {
+    background-color: red;
+}
+
+.logoutBtn {
+    float: right;
+    background-color: red;
+    color: white;
+    width: 70px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.loginBtn {
+    background-color: white;
+    border-radius: 12px;
+    width: 120px;
+    height: auto;
+}
+.signupBtn {
+    background-color: white;
+    border-radius: 12px;
+    width: 120px;
+    height: auto;
+}
+
+.addTaskBtn {
+    background-color: black;
+    color: white;
+}
+
+
+.calandaddBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.addtaskContainer {
+    width: 250px;
+    height: auto;
+}

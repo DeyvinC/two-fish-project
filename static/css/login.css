@@ -1,0 +1,49 @@
+.login-container{
+    margin: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+    height: 70%;
+    padding: 70px 0;
+    text-align: center;
+}
+
+.loginInputC {
+    padding: 30px;
+    width: 50%;
+    margin: auto;
+    justify-content: center;
+    box-shadow: 2px 3px 20px black, 0 0 60px #8a4d0f inset;
+    background: #fffef0;
+}
+
+.fieldsetContainer {
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 50px;
+    margin-bottom: 8px;
+    padding: 5px 10px;
+    display: flex;
+    width: 95%;
+}
+.fieldset2Container {
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 50px;
+    margin-bottom: 8px;
+    padding: 5px 10px;
+    display: flex;
+    width: 95%;
+}
+
+.fieldsetField {
+    padding: 10px;
+    width: 225px;
+}
+.fieldsetField2 {
+    padding: 10px;
+}
